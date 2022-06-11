@@ -85,9 +85,31 @@ lines2 = lines2.reshape(-1,3)
 
 img3, img4 = drawlines(img2, img1, lines2, pts2, pts1)
 
-subplot(121), imshow(img5)
-subplot(122), imshow(img3)
+#Accuracy of the F-Matrix
+error1 = []
+error2 = []
+
+for k in range(len(pts1)):
+    error1.append(distance(pts1[k], lines1[k]))
+    error2.append(distance(pts2[k], lines2[k]))
+    
+#Plot distances error
+n = len(error1)
+X,Y,Y_mean = [],[],[]
+
+for i in range(n): 
+    X.append(i)
+    Y.append(abs(error1[i]-error2[i]))
+    Y_mean.append(mean(Y))
+
+figure(figsize=(20,5))
+subplot(121), plot(X, Y), plot(X, Y_mean, label="Mean = " + str(Y_mean[0]))
+
+figure(figsize=(20,20))
+subplot(121), axis("off"), imshow(img5)
+subplot(122), axis("off"), imshow(img3)
 show()
+
 cv.imwrite('result_left.jpg', img5)
 cv.imwrite('result_right.jpg', img3)
 
