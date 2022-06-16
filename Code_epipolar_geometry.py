@@ -30,6 +30,15 @@ def drawlines(img1, img2, lines, pts1, pts2):
         img2 = cv.circle(img2, tuple(pt2), 5, color, -1)
     
     return img1, img2
+
+def distance(point, line):
+    '''Calculates the distance between a point and the corresponding epiline'''
+    a,b,c = line[0], line[1], line[2] 
+    x,y = point[0], point[1] 
+    dist = abs(a*x+b*y+c)/np.sqrt(a**2+b**2)
+
+    return dist
+
 #####################################################################################################################################
 
 ###### ANALYSIS PART ################################################################################################################
