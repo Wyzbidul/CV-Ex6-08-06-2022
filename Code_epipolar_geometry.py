@@ -35,7 +35,7 @@ def distance(point, line):
     '''Calculates the distance between a point and the corresponding epiline'''
     a,b,c = line[0], line[1], line[2] 
     x,y = point[0], point[1] 
-    dist = abs(a*x+b*y+c)/np.sqrt(a**2+b**2)
+    dist = abs(a*x+b*y+c)/sqrt(a**2+b**2)
 
     return dist
 
